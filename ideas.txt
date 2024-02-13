@@ -1,0 +1,61 @@
+no continuous data -> brute force each possible split 
+use greedy approach
+
+For determining split:
+ONLY consider binary splits (may increase # of nodes but thats fine)
+Assume all attribute types are ordinal (in this data set they are)
+Determine possible splits based on data, not external data structure
+use entropy: E = -SUM(P(class(node t)log2P(class(node t)))
+use weighted sum of child nodes for entropy: SUM((ni/n)Entropy(i))
+Gain = Entropy(Parent) - WeightedSumEntropy(child)
+no need for gain ratio since only binary splits used.
+Pick split with lowest Gain
+
+For detemining stopping condition:
+Do prepruning(stopping) with gain threshold
+If Gain < 0.05 OR node can't be split
+If Gain < 0.1 OR node can't be split
+Try a node limit of an arbitrary number based on results of first 2
+This represents 3 models
+
+For training validating and testing
+Do Holdout for the test set, splitting the data into 60% training/validation data and 40% test data. Stratify the hold out split
+For the Training/validation set, perform k fold cross validation with k = 4, stratifying each fold
+Evaluate Generalization error as a pessimistic error estimate for each model on results of k fold (penalizes complexity)
+Generalization Error = Average(error of each fold) +  a * (k / t)
+a = 0.5, k = # of leaf nodes, t = # of training samples
+Take Model with lowest generalization error and train on full training/validation set (60% of data)
+test on test set (40% of data) for resulting accuracy of model
+
+
+Basic Architecture: 
+Use Python
+Store all data in data frames (pandas)
+Determine possible splits based on data, not external data structure
+use dictionary to represent a node
+function for splitting data, stratified into k sets - datasplit module
+function for creating each train and validation set in k folds - datasplit module
+need a tree structure for storing decision tree - treenode module
+tree should support storing both training and test data that makes it to each node
+node should have clearing method to clear all descendent nodes of data - treenode module
+
+For determining possible splits: - decisionsplit module
+function to determine possible splits given ordinality of the data
+	use .json config file to map attribute names to ordinal integers
+function to determine best possible split by testing gain for all possible splits
+function to calculate gain of a split
+function to calculate entropy of a node
+
+Modules:
+main
+datasplit
+decisiontree -> DecisionTree Class
+treenode -> TreeNode Class
+decisionsplit
+
+DecisionTree Class takes in Gain Threshold (none if 0) and node limit (none if 0)
+has methods to train tree and pass data through tree
+
+
+
+

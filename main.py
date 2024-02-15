@@ -1,3 +1,8 @@
+# main.py
+# reads in data, splits into train, validation, and test data
+# builds 3 decision tree models
+# determines best model using cross validation and tests it on test data
+
 import pandas as pd
 from datasplit import split_data, split_4_folds, calculate_accuracy
 import decisiontree

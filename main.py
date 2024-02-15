@@ -21,34 +21,44 @@ print("Training Trees with gain threshold of 0.1")
 
 tree_1 = decisiontree.DecisionTree(0.1)
 tree_1.train(train_data_1)
+train_error_1 = 1.0 - calculate_accuracy(tree_1.test(train_data_1))
 val_error_1 = 1 - calculate_accuracy(tree_1.test(val_data_1))
 print("Tree 1: " + str(tree_1.node_count) + " nodes")
-print("Training Error: " + str(1.0 - calculate_accuracy(tree_1.test(train_data_1))))
+print("Training Error: " + str(train_error_1))
 print("Validation Error: " + str(val_error_1))
 
 tree_2 = decisiontree.DecisionTree(0.1)
 tree_2.train(train_data_2)
+train_error_2 = 1.0 - calculate_accuracy(tree_2.test(train_data_2))
 val_error_2 = 1 - calculate_accuracy(tree_2.test(val_data_2))
 print("Tree 2: " + str(tree_2.node_count) + " nodes")
-print("Training Error: " + str(1.0 - calculate_accuracy(tree_2.test(train_data_2))))
+print("Training Error: " + str(train_error_2))
 print("Validation Error: " + str(val_error_2))
 
 tree_3 = decisiontree.DecisionTree(0.1)
 tree_3.train(train_data_3)
+train_error_3 = 1.0 - calculate_accuracy(tree_3.test(train_data_3))
 val_error_3 = 1 - calculate_accuracy(tree_3.test(val_data_3))
 print("Tree 3: " + str(tree_3.node_count) + " nodes")
-print("Training Error: " + str(1.0 - calculate_accuracy(tree_3.test(train_data_3))))
+print("Training Error: " + str(train_error_3))
 print("Validation Error: " + str(val_error_3))
 
 tree_4 = decisiontree.DecisionTree(0.1)
 tree_4.train(train_data_4)
+train_error_4 = 1.0 - calculate_accuracy(tree_4.test(train_data_4))
 val_error_4 = 1 - calculate_accuracy(tree_4.test(val_data_4))
 print("Tree 4: " + str(tree_4.node_count) + " nodes")
-print("Training Error: " + str(1.0 - calculate_accuracy(tree_4.test(train_data_4))))
+print("Training Error: " + str(train_error_4))
 print("Validation Error: " + str(val_error_4))
 
+average_nodes = (tree_1.node_count + tree_2.node_count + tree_3.node_count + tree_4.node_count) / 4.0
 average_leaf_nodes = (tree_1.leaf_node_count + tree_2.leaf_node_count + tree_3.leaf_node_count + tree_4.leaf_node_count) / 4.0
+average_train_error = (train_error_1 + train_error_2 + train_error_3 + train_error_4) / 4.0
 average_val_error = (val_error_1 + val_error_2 + val_error_3 + val_error_4) / 4.0
+print("\nAverage Nodes: " + str(average_nodes))
+print("average leaf nodes: " + str(average_leaf_nodes))
+print("Average Training Error: " + str(average_train_error))
+print("Average Validation Error: " + str(average_val_error))
 
 generalization_error_1 = average_val_error + constant * (average_leaf_nodes / average_train_samples)
 print("\nGeneralization Error of Decision Tree with 0.1 gain threshold: " + str(generalization_error_1))
@@ -58,34 +68,44 @@ train_data_1, val_data_1, train_data_2, val_data_2, train_data_3, val_data_3, tr
 
 tree_1 = decisiontree.DecisionTree(0.05)
 tree_1.train(train_data_1)
+train_error_1 = 1.0 - calculate_accuracy(tree_1.test(train_data_1))
 val_error_1 = 1 - calculate_accuracy(tree_1.test(val_data_1))
 print("Tree 1: " + str(tree_1.node_count) + " nodes")
-print("Training Error: " + str(1.0 - calculate_accuracy(tree_1.test(train_data_1))))
+print("Training Error: " + str(train_error_1))
 print("Validation Error: " + str(val_error_1))
 
 tree_2 = decisiontree.DecisionTree(0.05)
 tree_2.train(train_data_2)
+train_error_2 = 1.0 - calculate_accuracy(tree_2.test(train_data_2))
 val_error_2 = 1 - calculate_accuracy(tree_2.test(val_data_2))
 print("Tree 2: " + str(tree_2.node_count) + " nodes")
-print("Training Error: " + str(1.0 - calculate_accuracy(tree_2.test(train_data_2))))
+print("Training Error: " + str(train_error_2))
 print("Validation Error: " + str(val_error_2))
 
 tree_3 = decisiontree.DecisionTree(0.05)
 tree_3.train(train_data_3)
+train_error_3 = 1.0 - calculate_accuracy(tree_3.test(train_data_3))
 val_error_3 = 1 - calculate_accuracy(tree_3.test(val_data_3))
 print("Tree 3: " + str(tree_3.node_count) + " nodes")
-print("Training Error: " + str(1.0 - calculate_accuracy(tree_3.test(train_data_3))))
+print("Training Error: " + str(train_error_3))
 print("Validation Error: " + str(val_error_3))
 
 tree_4 = decisiontree.DecisionTree(0.05)
 tree_4.train(train_data_4)
+train_error_4 = 1.0 - calculate_accuracy(tree_4.test(train_data_4))
 val_error_4 = 1 - calculate_accuracy(tree_4.test(val_data_4))
 print("Tree 4: " + str(tree_4.node_count) + " nodes")
-print("Training Error: " + str(1.0 - calculate_accuracy(tree_4.test(train_data_4))))
+print("Training Error: " + str(train_error_4))
 print("Validation Error: " + str(val_error_4))
 
+average_nodes = (tree_1.node_count + tree_2.node_count + tree_3.node_count + tree_4.node_count) / 4.0
 average_leaf_nodes = (tree_1.leaf_node_count + tree_2.leaf_node_count + tree_3.leaf_node_count + tree_4.leaf_node_count) / 4.0
+average_train_error = (train_error_1 + train_error_2 + train_error_3 + train_error_4) / 4.0
 average_val_error = (val_error_1 + val_error_2 + val_error_3 + val_error_4) / 4.0
+print("\nAverage Nodes: " + str(average_nodes))
+print("average leaf nodes: " + str(average_leaf_nodes))
+print("Average Training Error: " + str(average_train_error))
+print("Average Validation Error: " + str(average_val_error))
 
 generalization_error_2 = average_val_error + constant * (average_leaf_nodes / average_train_samples)
 print("\nGeneralization Error of Decision Tree with 0.05 gain threshold: " + str(generalization_error_2))
@@ -95,37 +115,47 @@ train_data_1, val_data_1, train_data_2, val_data_2, train_data_3, val_data_3, tr
 
 tree_1 = decisiontree.DecisionTree(0.15)
 tree_1.train(train_data_1)
+train_error_1 = 1.0 - calculate_accuracy(tree_1.test(train_data_1))
 val_error_1 = 1 - calculate_accuracy(tree_1.test(val_data_1))
 print("Tree 1: " + str(tree_1.node_count) + " nodes")
-print("Training Error: " + str(1.0 - calculate_accuracy(tree_1.test(train_data_1))))
+print("Training Error: " + str(train_error_1))
 print("Validation Error: " + str(val_error_1))
 
 tree_2 = decisiontree.DecisionTree(0.15)
 tree_2.train(train_data_2)
+train_error_2 = 1.0 - calculate_accuracy(tree_2.test(train_data_2))
 val_error_2 = 1 - calculate_accuracy(tree_2.test(val_data_2))
 print("Tree 2: " + str(tree_2.node_count) + " nodes")
-print("Training Error: " + str(1.0 - calculate_accuracy(tree_2.test(train_data_2))))
+print("Training Error: " + str(train_error_2))
 print("Validation Error: " + str(val_error_2))
 
 tree_3 = decisiontree.DecisionTree(0.15)
 tree_3.train(train_data_3)
+train_error_3 = 1.0 - calculate_accuracy(tree_3.test(train_data_3))
 val_error_3 = 1 - calculate_accuracy(tree_3.test(val_data_3))
 print("Tree 3: " + str(tree_3.node_count) + " nodes")
-print("Training Error: " + str(1.0 - calculate_accuracy(tree_3.test(train_data_3))))
+print("Training Error: " + str(train_error_3))
 print("Validation Error: " + str(val_error_3))
 
 tree_4 = decisiontree.DecisionTree(0.15)
 tree_4.train(train_data_4)
+train_error_4 = 1.0 - calculate_accuracy(tree_4.test(train_data_4))
 val_error_4 = 1 - calculate_accuracy(tree_4.test(val_data_4))
 print("Tree 4: " + str(tree_4.node_count) + " nodes")
-print("Training Error: " + str(1.0 - calculate_accuracy(tree_4.test(train_data_4))))
+print("Training Error: " + str(train_error_4))
 print("Validation Error: " + str(val_error_4))
 
+average_nodes = (tree_1.node_count + tree_2.node_count + tree_3.node_count + tree_4.node_count) / 4.0
 average_leaf_nodes = (tree_1.leaf_node_count + tree_2.leaf_node_count + tree_3.leaf_node_count + tree_4.leaf_node_count) / 4.0
+average_train_error = (train_error_1 + train_error_2 + train_error_3 + train_error_4) / 4.0
 average_val_error = (val_error_1 + val_error_2 + val_error_3 + val_error_4) / 4.0
+print("\nAverage Nodes: " + str(average_nodes))
+print("average leaf nodes: " + str(average_leaf_nodes))
+print("Average Training Error: " + str(average_train_error))
+print("Average Validation Error: " + str(average_val_error))
 
 generalization_error_3 = average_val_error + constant * (average_leaf_nodes / average_train_samples)
-print("\nGeneralization Error of Decision Tree with 0.15 gain threshold: " + str(generalization_error_2))
+print("\nGeneralization Error of Decision Tree with 0.15 gain threshold: " + str(generalization_error_3))
 
 if generalization_error_1 < generalization_error_2 and generalization_error_1 < generalization_error_3:
     print("\nGeneralization Error Lowest for Decision Tree with 0.1 gain threshold.")
@@ -141,7 +171,7 @@ print("Training Decision Tree with least generalization error on full training d
 
 final_tree.train(train_data)
 test_error = 1 - calculate_accuracy(final_tree.test(test_data))
-print("Final Tree: " + str(final_tree.node_count) + " nodes")
+print("Final Tree: " + str(final_tree.node_count) + " nodes, " + str(final_tree.leaf_node_count) + " leaf nodes")
 print("Training Error: " + str(1.0 - calculate_accuracy(final_tree.test(train_data))))
 print("Test Error: " + str(val_error_1))
 

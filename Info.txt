@@ -1,0 +1,48 @@
+Decision Tree Assignment Information - Kyle Fletcher
+
+1. This decision tree was implemented in python
+
+2. The only 2 libraries used in this implementation are Pandas and Math
+
+3. The data was split first into a 60% training/validation partition and a 40% test partition. These partitions were
+stratified. The training/validation partition was used for k-fold cross validation with a k = 4. The partitioning done
+for k-fold was also stratified. There were 3 models made of the decision tree. Each model did pre-pruning by setting a
+stopping condition as a gain threshold. So the gain from the best split had to be greater than the threshold otherwise
+the node would become a leaf node. The 3 models tested had gain thresholds of 0.15, 0.1, and 0.05. The impurity measure
+used was entropy. The gain was calculated by subtracting a weighted entropy of children nodes from the entropy of the
+parent node. The trees were entirely binary, meaning only binary splits were used. Also, the only splits considered were
+whether an attribute was equal to a single value. Overfitting was controlled by the metric used for generalization
+error. No post-pruning was performed.
+
+4. Holdout was used for the split between training/validation and test data. However, k-fold cross validation was used
+for evaluating the 3 initial models with the training/validation data. Generalization Error was calculated for each
+model during training/validation by this equation Gen.Error = E + c * (k / t) where E was average error of each
+validation set in the cross validation, c was a constant set to 1.0, k was the average number of leaf nodes in each
+training set of the cross validation, and t was the number of training samples in each training set of the cross
+validation. The model of the 3 with the lowest generalization error was chosen to be trained on the full
+training/validation dataset from holdout and tested on the test set. A simple error metric of the test set was recorded.
+
+5.
+Tree with 0.1 gain threshold:
+    average nodes: 118
+    average leaf nodes: 59.5
+    average training error: 0.0013
+    average validation error: 0.0579
+
+Tree with 0.05 gain threshold:
+    average nodes: 124
+    average leaf nodes: 62.5
+    average training error: 0.0003
+    average validation error: 0.0628
+
+Tree with 0.15 gain threshold:
+    average nodes: 53
+    average leaf nodes: 27
+    average training error: 0.1197
+    average validation error: 0.1603
+
+Chose Tree with 0.15 gain threshold:
+    Tree nodes: 149
+    Leaf nodes: 75
+    training error: 0.0019
+    testing error: 0.0731

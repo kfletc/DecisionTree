@@ -1,5 +1,6 @@
 # datasplit.py
 # contains methods for splitting data into train and test data as well as splitting for k-fold (k=4) cross validation
+
 import pandas as pd
 
 # split_data splits dataframe into 2 where the first has the given percentage of the data and the second has the rest
@@ -24,14 +25,18 @@ def split_4_folds(df):
     split_1, split_2 = split_data(split_1, 0.5)
     split_3, split_4 = split_data(split_3, 0.5)
 
-    train_1 = pd.DataFrame(columns=df.columns)
-    train_2 = pd.DataFrame(columns=df.columns)
-    train_3 = pd.DataFrame(columns=df.columns)
-    train_4 = pd.DataFrame(columns=df.columns)
-
     train_1 = pd.concat([split_2, split_3, split_4]).reset_index(drop=True)
     train_2 = pd.concat([split_1, split_3, split_4]).reset_index(drop=True)
     train_3 = pd.concat([split_1, split_2, split_4]).reset_index(drop=True)
     train_4 = pd.concat([split_1, split_2, split_3]).reset_index(drop=True)
 
     return train_1, split_1, train_2, split_2, train_3, split_3, train_4, split_4
+
+# given data that has predicted classes, return the accuracy of the predicted classes to the actual classes
+def calculate_accuracy(df):
+    total = df.shape[0]
+    correct = 0
+    for index, row in df.iterrows():
+        if row['class'] == row['PredictedClass']:
+            correct += 1
+    return float(correct) / float(total)

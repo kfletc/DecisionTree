@@ -12,8 +12,6 @@ class TreeNode:
         self.left_child = None
         self.attribute = None
         self.rule = None
-        if self.is_leaf:
-            self.assigned_class = self.__determine_class()
 
     # determine class of a leaf node
     def set_class(self):

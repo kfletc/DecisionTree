@@ -38,20 +38,14 @@ class DecisionTree:
         return_set['PredictedClass'] = "None"
         for index, row in test_set.iterrows():
             prediction = self.traverse_tree(row, self.root_node)
-            #print(prediction)
             return_set.at[index, 'PredictedClass'] = prediction
         return return_set
 
     # runs an instance of data through the tree recursively until it classifies it
     def traverse_tree(self, row, node):
-        #print("Attribute: " + str(node.attribute) + " rule: " + str(node.rule) + " class: " + str(node.assigned_class) + " isleaf: " + str(node.is_leaf))
         if node.is_leaf:
             return node.assigned_class
         if row[node.attribute] == node.rule:
             return self.traverse_tree(row, node.right_child)
         else:
             return self.traverse_tree(row, node.left_child)
-
-
-
-
